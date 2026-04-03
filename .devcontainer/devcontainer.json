@@ -1,0 +1,27 @@
+{
+  "name": "slime-dev",
+  "image": "slimerl/slime:latest",
+  "runArgs": [
+    "--gpus=all",
+    "--ipc=host",
+    "--shm-size=16g",
+    "--ulimit", "memlock=-1",
+    "--ulimit", "stack=67108864"
+  ],
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "remoteUser": "root",
+  "postCreateCommand": "cd /workspace && pip install -e . --no-deps",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/bin/python3",
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  }
+}
